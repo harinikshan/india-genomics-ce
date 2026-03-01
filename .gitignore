@@ -1,0 +1,27 @@
+*.pyc
+*.pyo
+__pycache__/
+.tmp/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+.DS_Store
+
+# Local datasets and generated artifacts
+data/*.vcf
+data/*.vcf.gz
+data/genome*.txt
+data/*cache*.json
+data/clinical_*.tsv
+data/clinvar_*.tsv
+data/clinvar_*.gz
+data/cpic_*.json
+data/pharmgkb_*.zip
+data/external/
+
+# Generated reports
+reports/*.md
+reports/*.json
+!reports/README.md
+!reports/.gitkeep

@@ -1,0 +1,15 @@
+Genetic Health Community Edition (CE)
+
+Copyright (c) 2026 Genetic Health contributors.
+
+This project includes references and integration hooks for third-party data sources.
+Data files from third parties are not bundled in this open-source release unless
+explicitly permitted by upstream licensing terms.
+
+Upstream sources commonly used with this project include:
+- ClinVar (NCBI)
+- PharmGKB
+- CPIC
+
+Users are responsible for downloading and using third-party datasets in accordance
+with each source's license and terms of use. See THIRD_PARTY_DATA.md.
