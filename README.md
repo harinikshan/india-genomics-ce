@@ -2,6 +2,17 @@
 
 India-first, privacy-first genomics toolkit for local DNA analysis and personalized health insights.
 
+## Screenshots
+
+### Upload Flow
+![01-upload](https://github.com/user-attachments/assets/ad468b61-0547-4bf5-af60-96244eb96a69)
+
+### Analysis Progress
+![02-analysis-progress](https://github.com/user-attachments/assets/44d2ec4d-aebb-460e-af52-a87c469006b4)
+
+### Report Dashboard
+![03-results-dashboard](https://github.com/user-attachments/assets/93f437c0-565c-420c-880a-726750cdbaad)
+
 ## Vision
 Build a transparent, locally runnable genomics foundation for India-focused preventive care and clinician conversations, while keeping personal DNA data under user control.
 
