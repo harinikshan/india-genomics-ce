@@ -58,7 +58,27 @@ Optional LAN sharing for a session:
 ```bash
 python3 app.py --share-lan
 ```
+## Dataset download time and progress check
+fetch_data.py --source all --accept-licenses can take time depending on internet speed.
 
+Approximate times:
+
+ClinVar (largest): ~5 to 30 minutes
+PharmGKB: ~1 to 10 minutes
+CPIC: ~30 seconds to 3 minutes
+Typical total: ~10 to 40 minutes.
+
+If it looks stuck, open a second terminal and run:
+```cd /path/to/india-genomics-ce
+ls -lh data/external/clinvar
+```
+
+If a .part file exists and size is increasing, download is still running.
+
+Live monitor (every 15s):
+```cd /path/to/india-genomics-ce
+while true; do date; ls -lh data/external/clinvar; sleep 15; done
+```
 ## CLI run
 ```bash
 python3 scripts/run_full_analysis.py examples/genome_demo.txt --name "Demo Subject"
