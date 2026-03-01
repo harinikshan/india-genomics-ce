@@ -976,6 +976,7 @@ def generate_swot_report(health_results, disease_findings, disease_stats,
     findings = health_results['findings']
     pharmgkb = health_results['pharmgkb_findings']
     summary = health_results['summary']
+    disease_stats = disease_stats or {}
     safe = _safe_name(subject_name)
     now = datetime.now().strftime("%d %B %Y")
 

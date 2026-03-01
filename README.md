@@ -1,51 +1,113 @@
-# Genetic Health CE
+# india-genomics-ce
 
-Local-first genomic analysis pipeline for VCF and 23andMe-style files.
+India-first, privacy-first genomics toolkit for local DNA analysis and personalized health insights.
 
-## Why open source
-- Privacy-first local processing.
-- Transparent analysis/report pipeline.
-- Community-auditable code for safer interpretation tooling.
+## Vision
+Build a transparent, locally runnable genomics foundation for India-focused preventive care and clinician conversations, while keeping personal DNA data under user control.
 
-## Community Edition scope (v1.0.0-oss)
-- Local CLI + Flask web app.
-- Lifestyle SNP analysis and report generation.
-- Optional ClinVar/PharmGKB/CPIC data bootstrap script.
-- Tests + CI baseline.
+## Community Edition scope (`v1.0.0-oss`)
+- Local web app (`Flask`) and CLI workflow.
+- Input support for 23andMe-style text files and `.vcf` conversion.
+- Multi-report generation for lifestyle, pharmacogenomics, and prenatal-oriented insights.
+- Optional external dataset bootstrap (`ClinVar`, `PharmGKB`, `CPIC`) with explicit license acceptance.
+- Open tests and CI baseline for reproducible trust.
 
-## What is not bundled
-- Personal genome files and personal reports.
-- Full third-party clinical datasets with restrictive licensing.
+## Why this is different (measurable)
+| Metric | This project | Why it matters |
+|---|---|---|
+| Privacy-by-default runtime | Web server binds to `127.0.0.1` by default (`--share-lan` to expose) | Reduces accidental data exposure on shared networks |
+| Input flexibility | 2 input styles: 23andMe-like text + `.vcf` | Easier onboarding for both consumers and clinics |
+| Output depth | Up to 7 markdown reports + structured JSON | Supports both simple and detailed review workflows |
+| Cleanup behavior | 24-hour cleanup of stale web job folders | Lowers residual sensitive data footprint |
+| Public verification baseline | `11` automated tests in OSS repo | Improves trust for contributors and adopters |
+| India-oriented report content | Dedicated prenatal report path + India-context guidance | Better local relevance than generic global-only templates |
 
-See `THIRD_PARTY_DATA.md` for data source policies.
+## How this helps real users
+- Converts raw DNA files into readable, structured reports.
+- Highlights lifestyle and medication-context genetic signals in one place.
+- Gives a practical summary users can carry into doctor consultations.
+- Runs locally, so users are not forced to upload genome data to third-party cloud services.
+
+## How this helps doctors and genetic counselors
+- Provides a pre-visit structured snapshot across lifestyle, drug-response, and risk categories.
+- Surfaces pharmacogenomics notes for medication discussion.
+- Adds a dedicated prenatal-oriented report to support reproductive counseling conversations.
+- Exports markdown and JSON artifacts for easier documentation and review.
 
 ## Quickstart (3 commands)
 ```bash
-pip install -r requirements.txt
-python scripts/fetch_data.py --source all --accept-licenses
-python app.py
+python3 -m pip install -r requirements.txt
+python3 scripts/fetch_data.py --source all --accept-licenses
+python3 app.py
 ```
 
-Open: `http://localhost:8000`
-To share on LAN for a session: `python app.py --share-lan`
+Open `http://localhost:8000`
 
-## CLI usage
+Optional LAN sharing for a session:
 ```bash
-python scripts/run_full_analysis.py examples/genome_demo.txt --name "Demo Subject"
+python3 app.py --share-lan
 ```
 
-## Repo layout
-- `app.py` - local web app
-- `scripts/` - pipeline and utilities
-- `templates/` - web templates
-- `data/` - local datasets (downloaded by user)
-- `reports/` - generated output
-- `tests/` - lightweight public test suite
+## CLI run
+```bash
+python3 scripts/run_full_analysis.py examples/genome_demo.txt --name "Demo Subject"
+```
 
-## Important disclaimer
-This software is for informational and educational use only.
-It is **not** a medical diagnosis tool.
-Always consult qualified clinicians or genetic counselors for medical decisions.
+## Sanity checklist
+Run these before release/push:
 
-## Contributing
-See `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`.
+```bash
+pytest -q
+python3 scripts/fetch_data.py --source all --dry-run --accept-licenses
+python3 scripts/run_full_analysis.py examples/genome_demo.txt --name "Demo Subject"
+```
+
+Expected:
+- tests pass
+- dataset bootstrap prints planned downloads and writes a manifest
+- CLI pipeline completes and writes reports to `reports/`
+
+## Generated outputs
+Depending on available datasets, generated reports include:
+- `EXHAUSTIVE_GENETIC_REPORT.md`
+- `ACTIONABLE_HEALTH_PROTOCOL_V3.md`
+- `SIMPLE_REPORT_<name>.md`
+- `COMPLETE_EASY_REPORT_<name>.md`
+- `SWOT_REPORT_<name>.md`
+- `PRENATAL_REPORT_<name>.md`
+- `EXHAUSTIVE_DISEASE_RISK_REPORT.md` (when ClinVar dataset is available)
+- `comprehensive_results.json`
+
+## Data and licensing
+- This repo does not bundle restricted third-party clinical datasets.
+- Use `scripts/fetch_data.py` after clone to download permitted sources.
+- See `THIRD_PARTY_DATA.md` for source terms and usage notes.
+
+## Safety and limitations
+- Decision-support only. Not a diagnostic medical device.
+- Report interpretations must be validated by qualified clinicians.
+- Dataset completeness and quality can affect output quality.
+- This version is optimized for local use and transparency, not for automated clinical diagnosis.
+
+## What is intentionally not bundled
+- Real personal genomes (`.vcf`, personal genome text files).
+- Generated personal reports.
+- Private/internal caches and restricted redistribution datasets.
+
+## Repo map
+- `app.py`: local web app
+- `scripts/`: parsers, analyzers, report generators, bootstrap utilities
+- `templates/`: web templates
+- `data/`: local data folder (downloaded post-clone)
+- `reports/`: generated output folder
+- `tests/`: public regression/sanity tests
+
+## Contributing and governance
+- Contribution guide: `CONTRIBUTING.md`
+- Code of conduct: `CODE_OF_CONDUCT.md`
+- Security disclosure: `SECURITY.md`
+- Privacy policy: `PRIVACY.md`
+- Roadmap: `ROADMAP.md`
+
+## License
+Apache License 2.0 (`LICENSE`).
